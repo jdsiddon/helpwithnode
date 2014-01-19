@@ -3,9 +3,29 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+	<div id="hugo">Hello I am hugo</div>
+	<div id="back_from_server"></div>
   </body>
+	<script>
+	
+	
+	$("#hugo").click(function(e) {
+		var data = "from client"; 
+		console.log("REQ: " + data); // Just to test within browser
+
+		$.post("/validate", data, function(fromServer, textStatus,jqXHR) {  // 1. We are sending "data" to the /validate route
+			console.log(fromServer);					// 5. callback gets executed
+			$( "#back_from_server" ).append( "<p>" + fromServer + "</p>" );   // 6. use jquery to append our data fromServer to #back_from_server element
+		});
+	});
+	</script>
+
+
+
 </html>

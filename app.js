@@ -31,6 +31,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.post('/validate', routes.validate);   // 2. Server gets a post request to /validate, and says "hey we have a route to go to." and goes to function defined in routes index.js
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
